@@ -1,6 +1,10 @@
 package net.shahto.hibernatecache.model;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -17,6 +21,10 @@ public class Moon {
     private String name;
     private int diameter;
 
+    /**
+     * Eager load of planets
+     * @return
+     */
     @Override
     public String toString() {
         return "Moon{" +

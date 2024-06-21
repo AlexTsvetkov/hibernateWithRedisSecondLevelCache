@@ -27,20 +27,29 @@ class SolarSystemServiceTest {
         return planet.get();
     }
 
-    @Test
-    @Transactional
-    void testReadPlanet() {
-        Planet planet = readPlanet(4);
-        //assert that the 4th planet is 'Mars'
-        assertEquals("Mars", planet.getName());
+    private Planet testReadPlanet(long id) {
+        Planet planet = readPlanet(id);
+        return planet;
     }
 
     @Test
     @Transactional
     void testReadPlanetThreeTimes() {
-        testReadPlanet();
-        testReadPlanet();
-        testReadPlanet();
+        Planet planet = testReadPlanet(4);
+        assertEquals("Mars", planet.getName());
+        testReadPlanet(4);
+        testReadPlanet(4);
+    }
+
+    @Test
+    @Transactional
+    void testReadDifferentPlanets() {
+        Planet planet1 = testReadPlanet(1);
+        assertEquals("Mercury", planet1.getName());
+        Planet planet2 = testReadPlanet(2);
+        assertEquals("Venus", planet2.getName());
+        testReadPlanet(3);
+        testReadPlanet(3);
     }
 
     @Test
@@ -49,6 +58,20 @@ class SolarSystemServiceTest {
         Planet planet = readPlanet(4);
         //assert that the 4th planet is 'Mars'
         assertEquals("Mars", planet.getName());
+        //assert Mars has 2 moons (triggers the lazy-loading of moons)
+        assertEquals(2, planet.getMoons().size());
+    }
+
+    @Test
+    @Transactional
+    void testUpdateAndReadPlanet() {
+        Planet planet = readPlanet(4);
+        String marsUpdatedName = "MarsUpdatedName";
+        planet.setName(marsUpdatedName);
+        planetService.updatePlanet(planet);
+        Planet updatedPlanet = readPlanet(4);
+        //assert that the updated planet name is 'MarsUpdated'
+        assertEquals(marsUpdatedName, updatedPlanet.getName());
         //assert Mars has 2 moons (triggers the lazy-loading of moons)
         assertEquals(2, planet.getMoons().size());
     }

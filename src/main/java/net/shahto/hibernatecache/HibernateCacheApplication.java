@@ -4,8 +4,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class HibernatecacheApplication {
-	public static void main(String[] args) {
-		SpringApplication.run(HibernatecacheApplication.class, args);
-	}
+public class HibernateCacheApplication {
+    public static void main(String[] args) {
+        SpringApplication.run(HibernateCacheApplication.class, args);
+    }
 }
