@@ -5,13 +5,15 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import java.util.Set;
 
-@Data
+@Getter
+@Setter
 @Entity
 @Cache(region = "planetCache", usage = CacheConcurrencyStrategy.READ_WRITE)
 @Table(name = "planets")
