@@ -68,8 +68,8 @@ class SolarSystemServiceTest {
         Planet planet = readPlanet(4);
         String marsUpdatedName = "MarsUpdatedName";
         planet.setName(marsUpdatedName);
-        planetService.updatePlanet(planet);
-        Planet updatedPlanet = readPlanet(4);
+        Planet updatedPlanet = planetService.updatePlanet(planet);
+        readPlanet(4);
         //assert that the updated planet name is 'MarsUpdated'
         assertEquals(marsUpdatedName, updatedPlanet.getName());
         //assert Mars has 2 moons (triggers the lazy-loading of moons)
