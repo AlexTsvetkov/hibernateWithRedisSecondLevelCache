@@ -15,12 +15,9 @@ This demo project accompanies the Medium article:
 - Lombok
 - Requires Redis running locally (or dockerized) at default port 6379
 
-## Installation
-Clone or download to your local workspace.
-##### Eclipse IDE:
-Import project.
-##### IntelliJ
-Open project.
-
-## License
-MIT
+## Run Redis in docker
+```shell
+docker pull redis
+docker run - name redisDemo -d redis
+docker exec -it redisDemo redis-cli
+```
